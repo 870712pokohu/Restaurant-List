@@ -21,11 +21,19 @@ npm install -g npm
 ```
 npm i nodemon
 ```
-4. Activate server, execute app.js
+4. Install express framework
+```
+npm i express
+```
+5. Install template engine - express handlebars
+```
+npm i express-handlebars
+```
+6. Activate server, execute app.js
 ```
 npm run dev
 ```
-5. If the server is successfully connected, the console will display the message: 
+7. If the server is successfully connected, the console will display the message: 
 ```
 express server is running on http://localhost:3000
 ```
