@@ -23,7 +23,7 @@ npm i nodemon
 ```
 4. Activate server, execute app.js
 ```
-nodemon app.js
+npm run dev
 ```
 5. If the server is successfully connected, the console will display the message: 
 ```
