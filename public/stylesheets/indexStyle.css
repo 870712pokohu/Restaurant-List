@@ -6,9 +6,14 @@ header {
   color: #4592af;
 }
 
+.navbar .navbar-button:hover {
+  background-color: white;
+}
+
 .navbar .navbar-brand:hover {
   color: #226089;
 }
+
 
 .banner {
   position: relative;

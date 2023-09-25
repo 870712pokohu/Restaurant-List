@@ -7,8 +7,9 @@
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
         我的餐廳清單
       </a>
-      <a href="/restaurants/editor" class="navbar-button pt-2 pb-2 ps-3 pe-3 rounded " style="text-decoration: none; background-color:#4592af; color:aliceblue;">
-        Go to Editor View
+      <a href="/" class="navbar-button pt-2 pb-2 ps-3 pe-3 rounded "
+        style="text-decoration: none; background-color:#226089; color:aliceblue;">
+        Back to Display View
       </a>
     </div>
   </nav>
@@ -35,14 +36,19 @@
 
 <!-- restaurant list -->
 <div class="container mt-5">
+  <div class="addRestaurant mb-5 text-end">
+    <a href="/restaurants/editor/new" class="p-3 rounded" style="text-decoration: none; font-size:20px; background-color: #fce2cf; color: #9b4b4b;">
+      <i class="fa-solid fa-bowl-food me-1"></i>
+      <span>Add New Restaurant</span>
+    </a>
+  </div>
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="row row-cols-sm-3">
+    <div class="col-md-12 col-12 mx-auto">
+      <div class="row row-cols-3">
         {{#each restaurants as |restaurant|}}
-        <a href="/restaurants/{{restaurant.id}}" class="text-secondary">
-          <div class="card mb-3">
-            <img class="card-img-top" src="{{restaurant.image}}"
-              alt="{{restaurant.name}}">
+        <div class="card mb-3">
+          <a href="/restaurants/editor/{{restaurant.id}}" class="text-secondary">
+            <img class="card-img-top" src="{{restaurant.image}}" alt="{{restaurant.name}}">
             <div class="card-body p-3">
               <h6 class="card-title mb-1">{{restaurant.name}}</h6>
               <div class="restaurant-category mb-1">
@@ -53,8 +59,13 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
             </div>
+          </a>
+          <div class="p-3 pt-1 text-end">
+            <a href="" class="me-2">Edit</a>
+            <a href="" class="me-2">Detail</a>
+            <button type="button" class="me-2">Delete</button>
           </div>
-        </a>
+        </div>
         {{/each}}
       </div>
     </div>
