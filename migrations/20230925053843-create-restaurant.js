@@ -16,7 +16,7 @@ module.exports = {
       nameEN: {
         allowNull: true,
         type: Sequelize.STRING
-      }, 
+      },
       category: {
         allowNull: true,
         type: Sequelize.STRING

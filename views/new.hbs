@@ -3,50 +3,72 @@
   <nav class="navbar navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
-          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+        <img
+          src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+          width="30"
+          height="30"
+          class="d-inline-block align-top"
+          alt="我的餐廳清單"
+        />
         我的餐廳清單
       </a>
     </div>
   </nav>
   <div class="banner"></div>
 </header>
-<div class="container mt-5 mb-5">
-  <h2>Add a new restaurant</h2>
-  <form action="/restaurants/editor" method="post" class="border p-3">
-    {{!-- reset button --}}
+<h1 class="text-center mb-3 restaurant-show-title">Add a new restaurant</h1>
+<div class="container mt-3 mb-5">
+  <form action="/restaurants/editor" method="post" class="border rounded p-3" style="box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);">
+    {{! reset button }}
     <div class="reset mb-3 text-end p-2">
       <button type="button">Reset</button>
     </div>
-    {{!-- name --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! name }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="nameForRestaurant" class="form-label">Name</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="nameForRestaurant" name="name" class="form-control" type="text" required>
+        <input
+          id="nameForRestaurant"
+          name="name"
+          class="form-control"
+          type="text"
+          required
+        />
       </div>
     </div>
-    {{!-- english name --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! english name }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="enNameForRestaurant" class="form-label">English Name</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="enNameForRestaurant" name="nameEN" class="form-control" type="text" required>
+        <input
+          id="enNameForRestaurant"
+          name="nameEN"
+          class="form-control"
+          type="text"
+          required
+        />
       </div>
     </div>
-    {{!-- phone --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! phone }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="phoneForRestaurant" class="form-label">Phone</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="phoneForRestaurant" name="phone" class="form-control" type="text">
+        <input
+          id="phoneForRestaurant"
+          name="phone"
+          class="form-control"
+          type="text"
+        />
       </div>
     </div>
-    {{!-- category --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! category }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="inputGroupSelect" class="form-label">Category</label>
       </div>
@@ -54,56 +76,82 @@
         <select class="form-select" id="inputGroupSelect" name="category">
           <option selected>Choose...</option>
           {{#each category as |category|}}
-          <option value="{{category}}">
-            {{category}}
-          </option>
+            <option value="{{category}}">
+              {{category}}
+            </option>
           {{/each}}
         </select>
       </div>
     </div>
-    {{!-- image url --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! image url }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="imgRestaurant">Image URL</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="imgRestaurant" name="imgURL" class="form-control" type="text">
+        <input
+          id="imgRestaurant"
+          name="imgURL"
+          class="form-control"
+          type="text"
+        />
       </div>
     </div>
-    {{!-- location --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! location }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="locationRestaurant" class="form-label">Location</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="locationRestaurant" name="location" class="form-control" type="text">
+        <input
+          id="locationRestaurant"
+          name="location"
+          class="form-control"
+          type="text"
+        />
       </div>
     </div>
-    {{!-- google map url --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! google map url }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="mapRestaurant" class="form-label">Google map URL</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="mapRestaurant" name="map" class="form-control" type="text">
+        <input id="mapRestaurant" name="map" class="form-control" type="text" />
       </div>
     </div>
-    {{!-- rating --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! rating }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
         <label for="ratingRestaurant" class="form-label">Rating</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="ratingRestaurant" step="0.01" min="0" max="5" name="rating" class="form-control" type="number" required>
+        <input
+          id="ratingRestaurant"
+          step="0.01"
+          min="0"
+          max="5"
+          name="rating"
+          class="form-control"
+          type="number"
+          required
+        />
       </div>
     </div>
-    {{!-- description --}}
-    <div class="mb-3 d-flex justify-content-between ">
+    {{! description }}
+    <div class="mb-3 d-flex justify-content-between">
       <div class="p-2" style="width:20%">
-        <label for="descriptionRestaurant" class="form-label">Description</label>
+        <label
+          for="descriptionRestaurant"
+          class="form-label"
+        >Description</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <textarea id="descriptionRestaurant" name="description" class="form-control"></textarea>
+        <textarea
+          id="descriptionRestaurant"
+          name="description"
+          class="form-control"
+        ></textarea>
       </div>
     </div>
     <div class="d-flex justify-content-center">

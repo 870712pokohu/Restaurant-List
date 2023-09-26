@@ -15,12 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Restaurant.init({
     name: DataTypes.STRING,
-    nameEN:DataTypes.STRING,
-    category:DataTypes.STRING,
-    image:DataTypes.STRING,
-    location:DataTypes.STRING,
-    phone:DataTypes.STRING,
-    googleMap:DataTypes.STRING,
+    nameEN: DataTypes.STRING,
+    category: DataTypes.STRING,
+    image: DataTypes.STRING,
+    location: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    googleMap: DataTypes.STRING,
     rating: DataTypes.DOUBLE,
     description: DataTypes.TEXT,
   }, {

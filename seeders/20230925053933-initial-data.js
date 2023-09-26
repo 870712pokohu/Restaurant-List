@@ -6,9 +6,9 @@ const restaurants = require('/Users/pokohu/Documents/alphaCamp/restaurant-list/p
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Restaurants',
-      Array.from(restaurants).map((singleRestaurant)=>
+      Array.from(restaurants).map((singleRestaurant) =>
       ({
         name: singleRestaurant.name,
         nameEN: singleRestaurant.name_en,
@@ -25,7 +25,7 @@ module.exports = {
     )
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('Restaurants',null)
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Restaurants', null)
   }
 };
