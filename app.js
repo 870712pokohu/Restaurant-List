@@ -1,11 +1,12 @@
 const express = require('express')
 const {engine} = require('express-handlebars')
+const methodOverride = require('method-override')
 const restaurants = require('./public/jsons/restaurant.json').results
 const app = express()
 const port = 3000
-
 const db = require('./models')
 const Restaurant = db.Restaurant
+let display
 
 
 // 樣板引擎交給 express-handlebars
@@ -15,10 +16,14 @@ app.set('views', './views')
 // provide static path for express framework
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
+app.use(methodOverride('_method'))
+
+
 app.get('/',(req,res)=>{
   res.redirect('/restaurants')
 })
 
+// (READ) - view all restaurants
 app.get('/restaurants',(req,res)=>{
   const keyword = req.query.keyword?.trim()
   //console.log(keyword)
@@ -37,7 +42,7 @@ app.get('/restaurants',(req,res)=>{
 })
 
 // render editor view - main restaurant page
-app.get('/restaurants/editor',(req,res)=>{
+app.get('/restaurants/editor', (req, res) => {
   const keyword = req.query.keyword?.trim()
   //console.log(keyword)
   return Restaurant.findAll({
@@ -54,11 +59,68 @@ app.get('/restaurants/editor',(req,res)=>{
     .catch((err) => console.log(err))
 })
 
-// render editor view - create restaurant page
+// (READ) - view a single restaurant
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findByPk(id, {
+    raw: true
+  })
+    .then((singleRestaurant) => {
+      display = "none"
+      console.log(singleRestaurant)
+      res.render('show', { singleRestaurant, display })
+    })
+    .catch((err) => console.log(err))
+})
+
+
+// (READ) render editor view - create restaurant page
 app.get('/restaurants/editor/new',(req,res)=>{
   res.render('new')
 })
 
+// (READ) render editor view - edit restaurant page
+app.get('/restaurants/editor/:id/edit',(req,res)=>{
+  const id = req.params.id
+  return Restaurant.findByPk(id, {
+    raw: true
+  })
+    .then((singleRestaurant) => {
+      console.log(singleRestaurant)
+      res.render('edit', { singleRestaurant })
+    })
+    .catch((err) => console.log(err))
+})
+
+app.get('/restaurants/editor/:id/detail',(req,res)=>{
+  const id = req.params.id
+  return Restaurant.findByPk(id, {
+    raw: true
+  })
+    .then((singleRestaurant) => {
+      display = "block" 
+      console.log(singleRestaurant)
+      res.render('show', { singleRestaurant, display })
+    })
+    .catch((err) => console.log(err))
+})
+
+
+// (READ) - view a single restaurant
+app.get('/restaurants/editor/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findByPk(id, {
+    raw: true
+  })
+    .then((singleRestaurant) => {
+      display = "block"
+      console.log(singleRestaurant)
+      res.render('show', { singleRestaurant, display })
+    })
+    .catch((err) => console.log(err))
+})
+
+// (CREATE) - add a new restaurant
 app.post('/restaurants/editor',(req,res)=>{
   const data = req.body
   console.log(data)
@@ -79,30 +141,17 @@ app.post('/restaurants/editor',(req,res)=>{
     .catch((err)=>console.log(err))
 })
 
-app.get('/restaurants/editor/:id',(req,res)=>{
+app.delete('/restaurants/editor/:id',(req,res)=>{
   const id = req.params.id
-  
-  // const restaurant = restaurants.find((restaurant) => restaurant.id.toString() === id)
-  // res.render('show', { restaurant })
-  return Restaurant.findByPk(id)
-    .then((singleRestaurant)=>{
-      res.render('show',{singleRestaurant})
+  console.log(id)
+  return Restaurant.destroy({ where:{ id: id }})
+    .then(()=>{
+      console.log('success')
+      res.redirect('/restaurants/editor')
     })
     .catch((err)=>console.log(err))
 })
 
-
-app.get('/restaurants/:id',(req,res)=>{
-  const id = req.params.id
-  return Restaurant.findByPk(id,{
-    raw:true
-  })
-    .then((singleRestaurant) => {
-      console.log(singleRestaurant)
-      res.render('show', { singleRestaurant })
-    })
-    .catch((err) => console.log(err))
-})
 
 app.listen(port,()=>{
   console.log(`express server is running on http://localhost:${port}`)

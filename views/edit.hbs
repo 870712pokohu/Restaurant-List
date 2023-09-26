@@ -1,0 +1,131 @@
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+        我的餐廳清單
+      </a>
+    </div>
+  </nav>
+  <div class="banner"></div>
+</header>
+<h1 class="mb-1 restaurant-show-title">{{singleRestaurant.nameEN}}</h1>
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-3">Edit restaurant</h2>
+  <form action="" method="post" class="border rounded p-3">
+    {{!-- reset button --}}
+    <div class="reset mb-3 text-end p-2">
+      <button type="button">Reset</button>
+    </div>
+    {{!-- name --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="nameForRestaurant" class="form-label" >Name</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="nameForRestaurant" name="name" class="form-control" type="text" value="{{singleRestaurant.name}}">
+      </div>
+    </div>
+    {{!-- english name --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="enNameForRestaurant" class="form-label">English Name</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="enNameForRestaurant" name="nameEN" class="form-control" type="text" value="{{singleRestaurant.nameEN}}">
+      </div>
+    </div>
+    {{!-- phone --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="phoneForRestaurant" class="form-label">Phone</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="phoneForRestaurant" name="phone" class="form-control" type="text" value="{{singleRestaurant.phone}}">
+      </div>
+    </div>
+    {{!-- category --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="inputGroupSelect" class="form-label">Category</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <select class="form-select" id="inputGroupSelect" name="category">
+          <option selected>Choose...</option>
+          <option value="中東料理">
+            中東料理
+          </option>
+          <option value="日本料理">
+            日本料理
+          </option>
+          <option value="義式餐廳">
+            義式餐廳
+          </option>
+          <option value="美式">
+            美式
+          </option>
+          <option value="酒吧">
+            酒吧
+          </option>
+          <option value="咖啡">
+            咖啡
+          </option>
+          <option value="其他">
+            其他
+          </option>
+        </select>
+      </div>
+    </div>
+    {{!-- image url --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="imgRestaurant">Image URL</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="imgRestaurant" name="imgURL" class="form-control" type="text" value="{{singleRestaurant.image}}">
+      </div>
+    </div>
+    {{!-- location --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="locationRestaurant" class="form-label">Location</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="locationRestaurant" name="location" class="form-control" type="text" value="{{singleRestaurant.location}}">
+      </div>
+    </div>
+    {{!-- google map url --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="mapRestaurant" class="form-label">Google map URL</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="mapRestaurant" name="map" class="form-control" type="text" value="{{singleRestaurant.googleMap}}">
+      </div>
+    </div>
+    {{!-- rating --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="ratingRestaurant" class="form-label">Rating</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <input id="ratingRestaurant" name="rating" class="form-control" type="text" value="{{singleRestaurant.rating}}">
+      </div>
+    </div>
+    {{!-- description --}}
+    <div class="mb-3 d-flex justify-content-between ">
+      <div class="p-2" style="width:20%">
+        <label for="descriptionRestaurant" class="form-label">Description</label>
+      </div>
+      <div class="p-2 flex-grow-1">
+        <textarea id="descriptionRestaurant" name="description" class="form-control">{{singleRestaurant.description}}</textarea>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button class="me-3" type="submit">Save</button>
+      <a class="me-3" href="/restaurants/editor">Cancel</a>
+    </div>
+  </form>
+</div>

@@ -37,7 +37,8 @@
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="addRestaurant mb-5 text-end">
-    <a href="/restaurants/editor/new" class="p-3 rounded" style="text-decoration: none; font-size:20px; background-color: #fce2cf; color: #9b4b4b;">
+    <a href="/restaurants/editor/new" class="p-3 rounded"
+      style="text-decoration: none; font-size:20px; background-color: #fce2cf; color: #9b4b4b;">
       <i class="fa-solid fa-bowl-food me-1"></i>
       <span>Add New Restaurant</span>
     </a>
@@ -61,9 +62,11 @@
             </div>
           </a>
           <div class="p-3 pt-1 text-end">
-            <a href="" class="me-2">Edit</a>
-            <a href="" class="me-2">Detail</a>
-            <button type="button" class="me-2">Delete</button>
+            <a href="/restaurants/editor/{{restaurant.id}}/edit" class="me-2">Edit</a>
+            <a href="/restaurants/editor/{{restaurant.id}}/detail" class="me-2">Detail</a>
+            <form action="/restaurants/editor/{{restaurant.id}}?_method=DELETE" method="post" style="display: inline-block;">
+              <button type="submit">Delete</button>
+            </form>
           </div>
         </div>
         {{/each}}
