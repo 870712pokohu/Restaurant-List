@@ -14,7 +14,7 @@
 <h1 class="mb-1 restaurant-show-title">{{singleRestaurant.nameEN}}</h1>
 <div class="container mt-5 mb-5">
   <h2 class="text-center mb-3">Edit restaurant</h2>
-  <form action="" method="post" class="border rounded p-3">
+  <form action="/restaurants/editor/{{singleRestaurant.id}}?_method=PUT" method="post" class="border rounded p-3">
     {{!-- reset button --}}
     <div class="reset mb-3 text-end p-2">
       <button type="button">Reset</button>

@@ -141,6 +141,28 @@ app.post('/restaurants/editor',(req,res)=>{
     .catch((err)=>console.log(err))
 })
 
+app.put('/restaurants/editor/:id',(req,res)=>{
+  const id = req.params.id
+  const data = req.body
+  return Restaurant.update({
+    name: data.name,
+    nameEN: data.nameEN,
+    phone: data.phone,
+    category: data.category,
+    image: data.imgURL,
+    location: data.location,
+    googleMap: data.map,
+    rating: data.rating,
+    description: data.description,
+    updatedAt: new Date()
+  },{where:{id:id}})
+    .then((restaurant)=>{
+      console.log(restaurant)
+      res.redirect(`/restaurants/editor/${id}`)
+    })
+    .catch((err)=>console.log(err))
+})
+
 app.delete('/restaurants/editor/:id',(req,res)=>{
   const id = req.params.id
   console.log(id)
