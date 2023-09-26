@@ -7,7 +7,7 @@ const port = 3000
 const db = require('./models')
 const Restaurant = db.Restaurant
 let display
-
+const category = ["中東料理", "日本料理", "義式餐廳", "美式", "酒吧", "咖啡", "其他"]
 
 // 樣板引擎交給 express-handlebars
 app.engine('.hbs', engine({extname: '.hbs'}))
@@ -18,7 +18,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'))
 
-
+// redirect to the main page
 app.get('/',(req,res)=>{
   res.redirect('/restaurants')
 })
@@ -73,10 +73,9 @@ app.get('/restaurants/:id', (req, res) => {
     .catch((err) => console.log(err))
 })
 
-
 // (READ) render editor view - create restaurant page
 app.get('/restaurants/editor/new',(req,res)=>{
-  res.render('new')
+  res.render('new',{category})
 })
 
 // (READ) render editor view - edit restaurant page
@@ -86,12 +85,15 @@ app.get('/restaurants/editor/:id/edit',(req,res)=>{
     raw: true
   })
     .then((singleRestaurant) => {
-      console.log(singleRestaurant)
-      res.render('edit', { singleRestaurant })
+      let defaultValue = singleRestaurant.category
+      let newCategory = category.filter(item => item !== defaultValue)
+      console.log(newCategory)
+      res.render('edit', { singleRestaurant, newCategory, defaultValue})
     })
     .catch((err) => console.log(err))
 })
 
+// (READ) - view a single restaurant's detail
 app.get('/restaurants/editor/:id/detail',(req,res)=>{
   const id = req.params.id
   return Restaurant.findByPk(id, {
@@ -104,7 +106,6 @@ app.get('/restaurants/editor/:id/detail',(req,res)=>{
     })
     .catch((err) => console.log(err))
 })
-
 
 // (READ) - view a single restaurant
 app.get('/restaurants/editor/:id', (req, res) => {
@@ -123,7 +124,6 @@ app.get('/restaurants/editor/:id', (req, res) => {
 // (CREATE) - add a new restaurant
 app.post('/restaurants/editor',(req,res)=>{
   const data = req.body
-  console.log(data)
   return Restaurant.create({
     name: data.name,
     nameEN: data.nameEN,
@@ -141,9 +141,11 @@ app.post('/restaurants/editor',(req,res)=>{
     .catch((err)=>console.log(err))
 })
 
+// (UPDATE) - update a single restaurant
 app.put('/restaurants/editor/:id',(req,res)=>{
   const id = req.params.id
   const data = req.body
+  console.log(data.category.value)
   return Restaurant.update({
     name: data.name,
     nameEN: data.nameEN,
@@ -156,16 +158,15 @@ app.put('/restaurants/editor/:id',(req,res)=>{
     description: data.description,
     updatedAt: new Date()
   },{where:{id:id}})
-    .then((restaurant)=>{
-      console.log(restaurant)
+    .then(()=>{
       res.redirect(`/restaurants/editor/${id}`)
     })
     .catch((err)=>console.log(err))
 })
 
+// (DELETE) - delete a single restaurant
 app.delete('/restaurants/editor/:id',(req,res)=>{
   const id = req.params.id
-  console.log(id)
   return Restaurant.destroy({ where:{ id: id }})
     .then(()=>{
       console.log('success')
@@ -173,7 +174,6 @@ app.delete('/restaurants/editor/:id',(req,res)=>{
     })
     .catch((err)=>console.log(err))
 })
-
 
 app.listen(port,()=>{
   console.log(`express server is running on http://localhost:${port}`)

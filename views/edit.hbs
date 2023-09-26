@@ -53,28 +53,12 @@
       </div>
       <div class="p-2 flex-grow-1">
         <select class="form-select" id="inputGroupSelect" name="category">
-          <option selected>Choose...</option>
-          <option value="中東料理">
-            中東料理
-          </option>
-          <option value="日本料理">
-            日本料理
-          </option>
-          <option value="義式餐廳">
-            義式餐廳
-          </option>
-          <option value="美式">
-            美式
-          </option>
-          <option value="酒吧">
-            酒吧
-          </option>
-          <option value="咖啡">
-            咖啡
-          </option>
-          <option value="其他">
-            其他
-          </option>
+          <option selected value="{{defaultValue}}">{{defaultValue}}</option>
+          {{#each newCategory as |category|}}
+            <option value="{{category}}">
+              {{category}}
+            </option>
+          {{/each}}
         </select>
       </div>
     </div>
@@ -111,7 +95,7 @@
         <label for="ratingRestaurant" class="form-label">Rating</label>
       </div>
       <div class="p-2 flex-grow-1">
-        <input id="ratingRestaurant" name="rating" class="form-control" type="text" value="{{singleRestaurant.rating}}">
+        <input id="ratingRestaurant" step="0.01" min="0" max="5" name="rating" class="form-control" type="number" value="{{singleRestaurant.rating}}">
       </div>
     </div>
     {{!-- description --}}
@@ -129,3 +113,7 @@
     </div>
   </form>
 </div>
+
+
+
+
