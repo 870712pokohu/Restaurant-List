@@ -36,6 +36,7 @@ npm run dev
 ```
 7. Open the browser and enter [http://localhost:3000](http://localhost:3000) to launch the website
 # ScreenShot
-![image](https://github.com/870712pokohu/Restaurant-List/assets/46664953/90d82ca3-d125-4e01-83a6-f977ceffdb7d)
-![image](https://github.com/870712pokohu/Restaurant-List/assets/46664953/e8d3369c-0150-4b6a-8eab-c39b7c1d39d5)
-![image](https://github.com/870712pokohu/Restaurant-List/assets/46664953/9e850f6c-2f3e-46c0-a970-2542fc469786)
+![image](https://github.com/870712pokohu/Restaurant-List/assets/46664953/d2461424-9d82-45ed-8877-ecccd0faf3e6)
+![image](https://github.com/870712pokohu/Restaurant-List/assets/46664953/eca600fc-9211-4c27-b477-5b2cab5509a7)
+
+
