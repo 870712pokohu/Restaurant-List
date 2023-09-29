@@ -4,13 +4,13 @@ const detail = document.querySelectorAll('.detail')
 edit.forEach((element)=>{
   element.addEventListener('click',(event)=>{
     event.preventDefault();
-    window.location.href = `/restaurants/editor/${event.target.value}/edit`
+    window.location.href = `/editor/${event.target.value}/edit`
   })
 })
 
 detail.forEach((element) => {
   element.addEventListener('click', (event) => {
     event.preventDefault();
-    window.location.href = `/restaurants/editor/${event.target.value}/detail`
+    window.location.href = `/editor/${event.target.value}/detail`
   })
 })

@@ -2,7 +2,7 @@
 
 const { DATE } = require('sequelize');
 
-const restaurants = require('/Users/pokohu/Documents/alphaCamp/restaurant-list/public/jsons/restaurant.json').results
+const restaurants = require('../public/jsons/restaurant.json').results
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {

@@ -25,12 +25,12 @@
 
       <div class="p-3 pt-1 mb-3 text-center" style="display:{{display}};">
         <a
-          href="/restaurants/editor/{{singleRestaurant.id}}/edit"
+          href="/editor/{{singleRestaurant.id}}/edit"
           class="me-2"
         >Edit</a>
-        <a href="/restaurants/editor" class="me-2">Back</a>
+        <a href="/editor" class="me-2">Back</a>
         <form
-          action="/restaurants/editor/{{singleRestaurant.id}}?_method=DELETE"
+          action="/editor/{{singleRestaurant.id}}?_method=DELETE"
           method="post"
           style="display: inline-block;"
         >

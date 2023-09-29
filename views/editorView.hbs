@@ -55,7 +55,7 @@
 <div class="container mt-5">
     <div class="addRestaurant mb-5 text-center">
       <a
-        href="/restaurants/editor/new"
+        href="/editor/new"
         class="p-3 rounded"
         style="text-decoration: none; font-size:20px; background-color: #fce2cf; color: #9b4b4b;"
       >
@@ -92,7 +92,7 @@
                 <button type="button" class="edit btn btn-outline-primary me-2" value="{{restaurant.id}}">
                 Edit</button>
                 <button type="button" class="detail btn btn-outline-success me-2" value="{{restaurant.id}}">Detail</button>
-                <form action="/restaurants/editor/{{restaurant.id}}?_method=DELETE" method="post" style="display: inline-block;">
+                <form action="/editor/{{restaurant.id}}?_method=DELETE" method="post" style="display: inline-block;">
                   <button type="submit" class="btn btn-outline-danger me-2">Delete</button>
                 </form>
               </div>
