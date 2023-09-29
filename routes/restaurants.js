@@ -8,9 +8,14 @@ let display
 
 // (READ) - view all restaurants
 router.get('/', (req, res) => {
+  const page = parseInt(req.query.page) || 1
+  console.log(page)
+  const limit = 6
   const keyword = req.query.keyword?.trim()
   //console.log(keyword)
   return Restaurant.findAll({
+    offset: (page-1)*limit,
+    limit: limit,
     raw: true
   })
     .then((restaurants) => {
@@ -19,7 +24,17 @@ router.get('/', (req, res) => {
           return restaurant
         }
       }) : restaurants
-      res.render('index', { restaurants: matchedRestaurants, keyword })
+      if (matchedRestaurants.length === 0){
+        res.redirect('back')
+      }else{
+        res.render('index', { 
+          restaurants: matchedRestaurants, 
+          keyword,
+          prev: page > 1 ? page-1 : page,
+          next: page + 1, 
+          page 
+        })
+      }
     })
     .catch((err) => console.log(err))
 })

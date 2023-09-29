@@ -9,9 +9,13 @@ const category = ["中東料理", "日本料理", "義式餐廳", "美式", "酒
 
 // render editor view - main restaurant page
 router.get('/', (req, res) => {
+  const page = parseInt(req.query.page) || 1
+  const limit = 6
   const keyword = req.query.keyword?.trim()
   //console.log(keyword)
   return Restaurant.findAll({
+    offset: (page-1)*limit,
+    limit: limit,
     raw: true
   })
     .then((restaurants) => {
@@ -20,7 +24,17 @@ router.get('/', (req, res) => {
           return restaurant
         }
       }) : restaurants
-      res.render('editorView', { restaurants: matchedRestaurants, keyword })
+      if(matchedRestaurants.length === 0){
+        res.redirect('back')
+      }else{
+        res.render('editorView', { 
+          restaurants: matchedRestaurants,
+          prev: page > 1 ? page - 1 : page,
+          next: page + 1,
+          page,
+          keyword 
+        })
+      }
     })
     .catch((err) => console.log(err))
 })
