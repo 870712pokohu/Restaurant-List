@@ -4,6 +4,8 @@ const router = express.Router()
 // access database
 const db = require('../models')
 const Restaurant = db.Restaurant
+// use sequelize operator
+const { Op } = require("sequelize");
 let display
 const category = ["中東料理", "日本料理", "義式餐廳", "美式", "酒吧", "咖啡", "其他"]
 
@@ -11,24 +13,29 @@ const category = ["中東料理", "日本料理", "義式餐廳", "美式", "酒
 router.get('/', (req, res) => {
   const page = parseInt(req.query.page) || 1
   const limit = 6
-  const keyword = req.query.keyword?.trim()
+  const keyword = req.query.keyword?.trim() || ""
   //console.log(keyword)
   return Restaurant.findAll({
-    offset: (page-1)*limit,
+    where: {
+      [Op.or]: {
+        name: {
+          [Op.like]: `%${keyword}%`
+        },
+        category: {
+          [Op.like]: `%${keyword}%`
+        }
+      }
+    },
+    offset: (page - 1) * limit,
     limit: limit,
     raw: true
   })
     .then((restaurants) => {
-      const matchedRestaurants = keyword ? restaurants.filter((restaurant) => {
-        if (restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())) {
-          return restaurant
-        }
-      }) : restaurants
-      if(matchedRestaurants.length === 0){
+      if (restaurants.length === 0){
         res.redirect('back')
       }else{
         res.render('editorView', { 
-          restaurants: matchedRestaurants,
+          restaurants: restaurants,
           prev: page > 1 ? page - 1 : page,
           next: page + 1,
           page,
